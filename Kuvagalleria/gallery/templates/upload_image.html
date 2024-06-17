@@ -1,0 +1,43 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+
+{% block title %}Upload an Image{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <a href="{% url 'personal_gallery' %}" class="btn btn-primary my-3">Return</a>
+            <div class="card">
+                <div class="card-body">
+                    <form method='POST' action="" enctype="multipart/form-data" class="custom-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <input required name="description" type="text" placeholder="Enter a description" class="form-control" id="description">
+                        </div>
+                        <div class="form-group">
+                            <label for="folder">Select a folder</label>
+                            <select name="folder" class="form-control" id="folder">
+                                <option value='none'>Select a folder</option>
+                                {% for folder in folders %}
+                                <option value='{{folder.id}}'>{{folder.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="folder_new">Create a new folder</label>
+                            <input name="folder_new" type="text" placeholder="Create a new folder" class="form-control" id="folder_new">
+                        </div>
+                        <div class="form-group">
+                            <label for="images">Upload image</label>
+                            <input required name="images" type="file" multiple class="form-control-file" id="images">
+                        </div>
+                        <button type='submit' class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

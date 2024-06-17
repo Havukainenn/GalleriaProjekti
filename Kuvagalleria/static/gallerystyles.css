@@ -1,0 +1,78 @@
+body {
+    padding-top: 0px;  
+    padding-bottom: 100px;  
+}
+.image-thumbnail {
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+.list-group-item a {
+    text-decoration: none;
+    color: black;
+}
+.image-container {
+    position: relative;
+}
+.image-description {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); 
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.5s;
+    overflow: hidden;
+}
+.image-container:hover .image-description {
+    opacity: 1;
+}
+
+.card-header {
+    background-color: #007bff; 
+    color: white;
+}
+
+.list-group-item {
+    border: none; 
+    transition: background-color 0.3s;
+}
+
+.list-group-item a {
+    color: #555; 
+    transition: color 0.3s;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa; 
+}
+
+.list-group-item:hover a {
+    color: #007bff; 
+}
+
+.text-decoration-none {
+    text-decoration: none; 
+}
+
+.fa-folder, .fa-images {
+    color: #007bff; 
+}
+
+.card-header {
+    cursor: pointer; 
+    user-select: none;
+}
+
+.card-header i {
+    transition: transform 0.3s; 
+}
+
+.card-header[aria-expanded="true"] i {
+    transform: rotate(180deg); 
+}
+
+

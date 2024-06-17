@@ -1,0 +1,97 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+
+{% block title %}Personal Gallery{% endblock %}
+
+{% block nav %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            {% if user.is_authenticated %}
+            <a class="navbar-brand" href="{% url 'personal_gallery' %}">{{ user.username }}'s Gallery</a>
+            {% else %}
+                <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+            {% endif %}
+            {% if request.user.is_authenticated %}
+                <div class="ml-auto">
+                    {% if request.resolver_match.url_name != 'upload_image' %}
+                        <a href="{% url 'upload_image' %}" class="btn btn-primary">Upload an Image</a>
+                    {% endif %}
+                    <a href="{% url 'custom_logout' %}" class="btn btn-danger">Sign Out</a>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-success ml-auto">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'gallerystyles.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-3">
+    <div class="search-container text-center">
+        <form method="get" action="{% url 'personal_gallery' %}" class="form-inline d-inline-block bg-dark">
+            <div class="input-group">
+                <input type="text" name="search" value="{{ search_query }}" placeholder="Search descriptions..." class="form-control" aria-label="Search descriptions">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white" data-bs-toggle="collapse" href="#folderList" role="button" aria-expanded="false" aria-controls="folderList">
+                <b>Your Folders</b> <i class="fas fa-chevron-down"></i>
+            </div>
+            <ul class="list-group list-group-flush collapse" id="folderList">
+                <li class="list-group-item">
+                    <a href="{% url 'personal_gallery' %}" class="text-decoration-none">
+                        <i class="fas fa-images me-2"></i>All images
+                    </a>
+                </li>
+                {% for folder in folders %}
+                <li class="list-group-item">
+                    <a href="{% url 'personal_gallery' %}?folder={{folder.name}}" class="text-decoration-none">
+                        <i class="fas fa-folder me-2"></i>{{ folder.name }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    {% if images %}
+    <div class="row">
+        {% for image in images %}
+        <div class="col-md-4">
+            <div class="card my-2">
+                <a href="{% url 'view_image' pk=image.id %}" class="image-container">
+                    <img class="image-thumbnail" src="{{image.file.url}}" alt="{{ image.description }}">
+                    <div class="image-description">
+                        <small>{{ image.description }}</small>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-warning" role="alert">
+        {% if search_performed %}
+            No search results for "{{ search_query }}".
+        {% else %}
+            You haven't uploaded any images yet!
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

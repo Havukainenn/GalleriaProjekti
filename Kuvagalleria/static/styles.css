@@ -1,0 +1,114 @@
+body {
+    font-family: 'Arial', sans-serif; 
+    background-color: #f4f4f9; 
+    color: #333; 
+    margin: 0;
+    display: flex;
+    flex-direction: column; 
+    padding-bottom: 100px;
+}
+
+header, footer {
+    background-color: #343a40; 
+    color: #ffffff;
+    text-align: center;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+}
+
+
+a, a:hover, a:focus {
+    text-decoration: none;
+    color: #007bff; 
+}
+
+.navbar-brand, .nav-link {
+    color: #333; 
+}
+
+.navbar-toggler {
+    border-color: #007bff; 
+}
+
+.hero-section {
+    background: linear-gradient(to right, #007bff, #0048aa); 
+    color: #ffffff;
+    padding: 40px 0;
+    margin-bottom: 30px;
+}
+
+.image-grid .image-item {
+    margin-bottom: 30px;
+    border: 1px solid #ddd; 
+    padding: 10px;
+    background-color: #ffffff;
+}
+
+/* Form Styles */
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px; 
+    box-shadow: 0 5px 50px rgba(0,0,0,0.2); 
+    width: 100%;
+    max-width: 360px; 
+    margin: 20px auto;
+}
+
+
+.custom-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.custom-form label {
+    font-weight: bold;
+}
+
+.custom-form .form-group {
+    margin-bottom: 20px;
+}
+
+.custom-form input[type="text"],
+.custom-form select,
+.custom-form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.custom-form button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.custom-form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+input[type="text"], input[type="password"], input[type="email"] {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 100%; 
+}
+
